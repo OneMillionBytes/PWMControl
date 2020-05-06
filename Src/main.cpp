@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
+#include "PWMTimer.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,33 +68,7 @@ void StartDefaultTask(void *argument);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void setDutyCycle(uint8_t dutyCycle) {
-    float compare = htim1.Instance->ARR;
-    compare /= 100;
-    compare *= dutyCycle;
-    htim1.Instance->CCR1 = compare - 1;
-}
 
-void setPeriod(uint16_t period) {
-    htim1.Instance->ARR = period - 1;
-    htim1.Instance->CNT = 0;
-}
-
-void setCompare(uint16_t compare) {
-    htim1.Instance->CCR1 = compare - 1;
-}
-
-void setPrescaler(uint16_t prescaler) {
-    htim1.Instance->PSC = prescaler - 1;
-}
-
-void start() {
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-}
-
-void stop() {
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-}
 
 const char* helpString =
         "Syntax: <command>:<argument>\n"
@@ -108,13 +83,10 @@ const char* helpString =
         "A8->PWM out\n";
 
 const char* statusTemplate =
-        "Clock: %u\n"
-        "Prescaler: %u\n"
-        "Period: %u\n"
-        "Compare: %u\n";
+        "Clock: %u\n";
 
 uint32_t status(char* const buffer) {
-    return sprintf(buffer, statusTemplate, HAL_RCC_GetHCLKFreq(), htim1.Instance->PSC, htim1.Instance->ARR, htim1.Instance->CCR1);
+    return sprintf(buffer, statusTemplate, HAL_RCC_GetHCLKFreq());
 }
 
 /* USER CODE END 0 */
@@ -439,8 +411,22 @@ void usbPrepare() {
   */
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
-char* okMSG = "OK\n";
+const char* okMSG = "OK\n";
 char statusMessage[80];
+
+struct command{
+    const char* cmd;
+    uint8_t len;
+};
+
+command startCmd{"start", sizeof("start")-1};
+command stopCmd{"stop", sizeof("stop")-1};
+command dutyCmd{"duty", sizeof("duty")-1};
+command periodCmd{"period", sizeof("period")-1};
+command compareCmd{"compare", sizeof("compare")-1};
+command prescalerCmd{"prescaler", sizeof("prescaler")-1};
+command helpCmd{"help", sizeof("help")-1};
+command statusCmd{"status", sizeof("status")-1};
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
@@ -451,36 +437,58 @@ void StartDefaultTask(void *argument)
     uint8_t command[64];
     uint8_t rxSize;
 
+    PWMTimer _Timer1(htim1);
+    PWMTimer _Timer2(htim3);
+
   for(;;)
   {
+      // :: Wait for new data
       rxSize = xStreamBufferReceive(USBRxBufferHandle, command, 64, portMAX_DELAY);
 
+      // :: make string editable
+      uint8_t* commandPtr = command;
+
+      // :: transmit OK message
       CDC_Transmit_FS((uint8_t*)okMSG, 3);
 
-      if(0 == strncmp((char*)"start", (char*)command, 5)) {
-          start();
-      } else if(0 == strncmp((char*)"stop", (char*)command, 4)) {
-          stop();
-      } else if(0 == strncmp((char*)"duty", (char*)command, 4)) {
-          uint8_t duty = GetArgument(0, command);
-          setDutyCycle(duty);
-      } else if(0 == strncmp((char*)"period", (char*)command, 6)) {
-          uint16_t period = GetArgument(0, command);
-          setPeriod(period);
-      } else if(0 == strncmp((char*)"compare", (char*)command, 7)) {
-          uint16_t compare = GetArgument(0, command);
-          setCompare(compare);
-      } else if(0 == strncmp((char*)"prescaler", (char*)command, 9)) {
-          uint16_t prescaler = GetArgument(0, command);
-          setPrescaler(prescaler);
-      } else if(0 == strncmp((char*)"help", (char*)command, 4)) {
-          CDC_Transmit_FS((uint8_t*)helpString, strlen(helpString));
-      } else if(0 == strncmp((char*)"status", (char*)command, 6)) {
-          uint32_t len = status(statusMessage);
-          CDC_Transmit_FS((uint8_t*)statusMessage, len);
+      // :: select the correct timer
+      PWMTimer* _pTimer = nullptr;
+      if(0 == strncmp((char*)"t1: ", (char*)commandPtr, 4)) {
+          _pTimer = &_Timer1;
+      } else if(0 == strncmp((char*)"t2: ", (char*)commandPtr, 4)) {
+          _pTimer = &_Timer2;
       }
+      commandPtr += 3;
 
-    osDelay(1);
+      // :: perform desired action
+      if(nullptr != _pTimer) {
+          if (0 == strncmp(startCmd.cmd, (char *) commandPtr, startCmd.len)) {
+              _pTimer->start();
+          } else if (0 == strncmp(stopCmd.cmd, (char *) commandPtr, stopCmd.len)) {
+              _pTimer->stop();
+          } else if (0 == strncmp(dutyCmd.cmd, (char *) commandPtr, dutyCmd.len)) {
+              uint8_t duty = GetArgument(0, commandPtr);
+              _pTimer->setDutyCycle(duty);
+          } else if (0 == strncmp(periodCmd.cmd, (char *) commandPtr, periodCmd.len)) {
+              uint16_t period = GetArgument(0, commandPtr);
+              _pTimer->setPeriod(period);
+          } else if (0 == strncmp(compareCmd.cmd, (char *) commandPtr, compareCmd.len)) {
+              uint16_t compare = GetArgument(0, commandPtr);
+              _pTimer->setCompare(compare);
+          } else if (0 == strncmp(prescalerCmd.cmd, (char *) commandPtr, prescalerCmd.len)) {
+              uint16_t prescaler = GetArgument(0, commandPtr);
+              _pTimer->setPrescaler(prescaler);
+          } else if (0 == strncmp(helpCmd.cmd, (char *) commandPtr, helpCmd.len)) {
+              CDC_Transmit_FS((uint8_t *) helpString, strlen(helpString));
+          } else if (0 == strncmp(statusCmd.cmd, (char *) commandPtr, statusCmd.len)) {
+              uint32_t len = status(statusMessage);
+              CDC_Transmit_FS((uint8_t *) statusMessage, len);
+
+              len = _pTimer->status(statusMessage);
+              CDC_Transmit_FS((uint8_t *) statusMessage, len);
+          }
+      }
+      osDelay(1);
   }
   /* USER CODE END 5 */ 
 }

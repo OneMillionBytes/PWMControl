@@ -54,6 +54,7 @@ cmake_minimum_required(VERSION 3.14)
     SET(SOURCES
             startup_stm32f103xb.s
             Src/main.cpp
+            Src/PWMTimer.cpp
     Src/freertos.c
     Src/usb_device.c
     Src/usbd_conf.c

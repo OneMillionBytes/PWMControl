@@ -12,16 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4f09567-39ec-4b00-a786-5938493e786e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/PWMTimer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Src/PWMTimer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inc/FreeRTOSConfig.h" beforeDir="false" afterPath="$PROJECT_DIR$/Inc/FreeRTOSConfig.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inc/stm32f1xx_hal_conf.h" beforeDir="false" afterPath="$PROJECT_DIR$/Inc/stm32f1xx_hal_conf.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inc/stm32f1xx_it.h" beforeDir="false" afterPath="$PROJECT_DIR$/Inc/stm32f1xx_it.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PWMOut.ioc" beforeDir="false" afterPath="$PROJECT_DIR$/PWMOut.ioc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/stm32f1xx_hal_msp.c" beforeDir="false" afterPath="$PROJECT_DIR$/Src/stm32f1xx_hal_msp.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/stm32f1xx_it.c" beforeDir="false" afterPath="$PROJECT_DIR$/Src/stm32f1xx_it.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +42,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.PWMOut.elf">
     <configuration name="PWMOut.elf" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PWMOut" TARGET_NAME="PWMOut.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PWMOut" RUN_TARGET_NAME="PWMOut.elf">
@@ -90,7 +85,7 @@
       <updated>1579357034033</updated>
       <workItem from="1579357035739" duration="8243000" />
       <workItem from="1581096212499" duration="5762000" />
-      <workItem from="1588611357214" duration="3128000" />
+      <workItem from="1588611357214" duration="8258000" />
     </task>
     <servers />
   </component>
@@ -107,7 +102,26 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
+    <state x="320" y="127" key="#New_File_Extensions" timestamp="1588679494908">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="127" key="#New_File_Extensions/0.23.1440.877@0.23.1440.877" timestamp="1588679494908" />
+    <state x="100" y="123" width="1240" height="677" key="DiffContextDialog" timestamp="1588679504212">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="100" y="123" width="1240" height="677" key="DiffContextDialog/0.23.1440.877@0.23.1440.877" timestamp="1588679504212" />
     <state width="570" height="157" key="GridCell.Tab.0.bottom" timestamp="1581704288844">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -156,10 +170,10 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="570" height="157" key="GridCell.Tab.2.right/0.23.1440.877@0.23.1440.877" timestamp="1581704288849" />
-    <state x="221" y="100" key="SettingsEditor" timestamp="1588662179446">
+    <state x="221" y="100" key="SettingsEditor" timestamp="1588684076010">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="221" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1588662179446" />
+    <state x="221" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1588684076010" />
     <state x="397" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1588611360796">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
