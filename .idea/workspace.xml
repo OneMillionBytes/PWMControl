@@ -12,10 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4f09567-39ec-4b00-a786-5938493e786e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Src/PWMTimer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/PWMTimer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +26,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectId" id="1WZVJsroyHLU0RJpdEdskvaculy" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -107,7 +105,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -1,0 +1,4 @@
+.DS_Store
+.mxproject
+Src/main.c
+cmake-build-debug/

@@ -71,7 +71,11 @@ void StartDefaultTask(void *argument);
 
 
 const char* helpString =
-        "Syntax: <command>:<argument>\n"
+        "Syntax: <timer>:<command>:<argument>\n"
+        "<timer> [t1,t2]\n"
+        "t1........... Timer connected to A8\n"
+        "t2........... Timer connected to A9\n"
+        "<command>:<arguments>\n"
         "help ........ Prints this output\n"
         "start ....... starts PWM\n"
         "stop ........ stops PWM\n"
@@ -79,8 +83,7 @@ const char* helpString =
         "period ...... sets the period [0..65535]\n"
         "compare ..... sets compare value [0.65535]\n"
         "prescaler ... sets the prescaler [0..65535]\n"
-        "status ...... prints the current configuration\n"
-        "A8->PWM out\n";
+        "status ...... prints the current configuration\n";
 
 const char* statusTemplate =
         "Clock: %u\n";
@@ -427,6 +430,7 @@ command compareCmd{"compare", sizeof("compare")-1};
 command prescalerCmd{"prescaler", sizeof("prescaler")-1};
 command helpCmd{"help", sizeof("help")-1};
 command statusCmd{"status", sizeof("status")-1};
+
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
@@ -453,9 +457,9 @@ void StartDefaultTask(void *argument)
 
       // :: select the correct timer
       PWMTimer* _pTimer = nullptr;
-      if(0 == strncmp((char*)"t1: ", (char*)commandPtr, 4)) {
+      if(0 == strncmp((char*)"t1:", (char*)commandPtr, 3)) {
           _pTimer = &_Timer1;
-      } else if(0 == strncmp((char*)"t2: ", (char*)commandPtr, 4)) {
+      } else if(0 == strncmp((char*)"t2:", (char*)commandPtr, 3)) {
           _pTimer = &_Timer2;
       }
       commandPtr += 3;
