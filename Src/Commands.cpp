@@ -26,43 +26,62 @@ uint32_t status(char* const buffer) {
     return sprintf(buffer, statusTemplate, HAL_RCC_GetHCLKFreq());
 }
 
-void StartCommand::_RunCommand(PWMTimer* a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+bool StartCommand::_RunCommand(PWMTimer* a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
     a_poTimer->start();
+    return true;
 }
 
-void HelpCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+bool HelpCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
     CDC_Transmit_FS((uint8_t *) helpString, strlen(helpString));
+    return true;
 }
 
-void StopCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+bool StopCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
     a_poTimer->stop();
+    return true;
 }
 
-void DutyCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
-    uint8_t duty = GetArgument(0, a_sArguments);
+bool DutyCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+    auto [valid, duty] = GetUint32Argument(0, a_sArguments, a_ui8ArgumentsLength);
+    if(not valid) {
+        return false;
+    }
     a_poTimer->setDutyCycle(duty);
+    return true;
 }
 
-void PeriodCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
-    uint16_t period = GetArgument(0, a_sArguments);
+bool PeriodCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+    auto [valid, period] = GetUint32Argument(0, a_sArguments, a_ui8ArgumentsLength);
+    if(not valid) {
+        return false;
+    }
     a_poTimer->setPeriod(period);
 }
 
-void CompareCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
-    uint16_t compare = GetArgument(0, a_sArguments);
+bool CompareCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+    auto [valid, compare] = GetUint32Argument(0, a_sArguments, a_ui8ArgumentsLength);
+    if(not valid) {
+        return false;
+    }
     a_poTimer->setCompare(compare);
+    return true;
 }
 
-void PrescalerCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
-    uint16_t prescaler = GetArgument(0, a_sArguments);
+bool PrescalerCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+    auto [valid, prescaler] = GetUint32Argument(0, a_sArguments, a_ui8ArgumentsLength);
+    if(not valid) {
+        return false;
+    }
     a_poTimer->setPrescaler(prescaler);
+    return true;
 }
 
 char statusMessage[80];
-void StatusCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
+bool StatusCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
     uint32_t len = status(statusMessage);
     CDC_Transmit_FS((uint8_t *) statusMessage, len);
 
     len = a_poTimer->status(statusMessage);
     CDC_Transmit_FS((uint8_t *) statusMessage, len);
+    return true;
 }

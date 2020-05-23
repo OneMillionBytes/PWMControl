@@ -9,7 +9,7 @@ class CommandBase {
     const char* m_sCommandName;
     uint8_t m_ui8CommandLen;
 
-    virtual void _RunCommand(PWMTimer* a_poTimer, char* a_sArguments, uint8_t a_ui8ArgumentsLength) = 0;
+    virtual bool _RunCommand(PWMTimer* a_poTimer, char* a_sArguments, uint8_t a_ui8ArgumentsLength) = 0;
 
 public:
 

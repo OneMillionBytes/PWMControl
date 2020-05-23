@@ -12,15 +12,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4f09567-39ec-4b00-a786-5938493e786e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Src/CommandBase.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/CommandBase.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Commands.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Commands.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Util.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Util.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/CommandBase.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/CommandBase.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Commands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Commands.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Commands.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Commands.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Util.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Util.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Util.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +80,7 @@
       <workItem from="1579357035739" duration="8243000" />
       <workItem from="1581096212499" duration="5762000" />
       <workItem from="1588611357214" duration="8258000" />
-      <workItem from="1589622759837" duration="5853000" />
+      <workItem from="1589622759837" duration="9607000" />
     </task>
     <servers />
   </component>
