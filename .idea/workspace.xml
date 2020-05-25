@@ -13,12 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c4f09567-39ec-4b00-a786-5938493e786e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/CommandBase.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/CommandBase.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Commands.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Commands.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Commands.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Commands.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Util.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Util.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Util.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Util.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,20 +40,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
-  </component>
-<<<<<<< HEAD
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -78,15 +60,16 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-=======
-  <component name="RunManager">
->>>>>>> 4237625961635a671d684a51c750cb53783a8046
     <configuration name="PWMOut.elf" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" nameIsGenerated="true" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PWMOut" TARGET_NAME="PWMOut.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PWMOut" RUN_TARGET_NAME="PWMOut.elf">
       <openocd gdb-port="3333" telnet-port="4444" board-config="board/stm32f103c8_blue_pill.cfg" reset-type="INIT" download-type="ALWAYS" />
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="CMake Application.PWMOut.elf" />
+      <item itemvalue="OpenOCD Download &amp; Run.PWMOut.elf" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -101,7 +84,6 @@
       <workItem from="1579357035739" duration="8243000" />
       <workItem from="1581096212499" duration="5762000" />
       <workItem from="1588611357214" duration="8258000" />
-      <workItem from="1589622759837" duration="9607000" />
     </task>
     <servers />
   </component>
@@ -136,10 +118,6 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="320" y="127" key="#New_File_Extensions/0.23.1440.877@0.23.1440.877" timestamp="1588679494908" />
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1589645741655">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1589645741655" />
     <state x="100" y="123" width="1240" height="677" key="DiffContextDialog" timestamp="1588679504212">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
@@ -192,15 +170,13 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="570" height="157" key="GridCell.Tab.2.right/0.23.1440.877@0.23.1440.877" timestamp="1581704288849" />
-    <state x="211" y="119" key="SettingsEditor" timestamp="1589642904147">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="221" y="100" key="SettingsEditor" timestamp="1588684076010">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="211" y="119" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1589642904147" />
     <state x="221" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1588684076010" />
-    <state x="397" y="278" key="com.intellij.ide.util.TipDialog" timestamp="1589622760741">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="397" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1588611360796">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="397" y="278" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1589622760741" />
     <state x="397" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1588611360796" />
     <state x="128" y="204" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1581680398049">
       <screen x="0" y="23" width="1440" height="877" />

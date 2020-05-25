@@ -56,6 +56,7 @@ bool PeriodCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t
         return false;
     }
     a_poTimer->setPeriod(period);
+    return true;
 }
 
 bool CompareCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
