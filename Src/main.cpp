@@ -27,6 +27,8 @@
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
 #include "PWMTimer.hpp"
+#include "Util.hpp"
+#include "Commands.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -70,27 +72,7 @@ void StartDefaultTask(void *argument);
 /* USER CODE BEGIN 0 */
 
 
-const char* helpString =
-        "Syntax: <timer>:<command>:<argument>\n"
-        "<timer> [t1,t2]\n"
-        "t1........... Timer connected to A8\n"
-        "t2........... Timer connected to A9\n"
-        "<command>:<arguments>\n"
-        "help ........ Prints this output\n"
-        "start ....... starts PWM\n"
-        "stop ........ stops PWM\n"
-        "duty ........ sets duty cycle [0..100]\n"
-        "period ...... sets the period [0..65535]\n"
-        "compare ..... sets compare value [0.65535]\n"
-        "prescaler ... sets the prescaler [0..65535]\n"
-        "status ...... prints the current configuration\n";
 
-const char* statusTemplate =
-        "Clock: %u\n";
-
-uint32_t status(char* const buffer) {
-    return sprintf(buffer, statusTemplate, HAL_RCC_GetHCLKFreq());
-}
 
 /* USER CODE END 0 */
 
@@ -109,7 +91,6 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
-
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -369,25 +350,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-uint8_t FindChar(uint8_t Char, uint8_t* Buf){
-    for(uint8_t i = 0; i < 255; i++){
-        if(Buf[i] == Char){
-            return i;
-        }
-    }
-    return 0;
-}
 
-uint32_t GetArgument(uint8_t aArgumentPosition, uint8_t* aBuffer){
-    // find beginning of first argument
-    uint16_t _begin = 0;
-    for(uint8_t i = 0; i < aArgumentPosition + 1; i++){
-        _begin += FindChar(':', &aBuffer[_begin]);
-        _begin += 1;
-    }
-
-    return atoi((char*)&aBuffer[_begin]);
-}
 
 void usbPrepare() {
     /* init code for USB_DEVICE */
@@ -415,21 +378,25 @@ void usbPrepare() {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmissing-noreturn"
 const char* okMSG = "OK\n";
-char statusMessage[80];
 
-struct command{
-    const char* cmd;
-    uint8_t len;
-};
+StartCommand startCmd{"start", sizeof("start")-1};
+StopCommand stopCmd{"stop", sizeof("stop")-1};
+DutyCommand dutyCmd{"duty", sizeof("duty")-1};
+PeriodCommand periodCmd{"period", sizeof("period")-1};
+CompareCommand compareCmd{"compare", sizeof("compare")-1};
+PrescalerCommand prescalerCmd{"prescaler", sizeof("prescaler")-1};
+HelpCommand helpCmd{"help", sizeof("help")-1};
+StatusCommand statusCmd{"status", sizeof("status")-1};
 
-command startCmd{"start", sizeof("start")-1};
-command stopCmd{"stop", sizeof("stop")-1};
-command dutyCmd{"duty", sizeof("duty")-1};
-command periodCmd{"period", sizeof("period")-1};
-command compareCmd{"compare", sizeof("compare")-1};
-command prescalerCmd{"prescaler", sizeof("prescaler")-1};
-command helpCmd{"help", sizeof("help")-1};
-command statusCmd{"status", sizeof("status")-1};
+CommandBase* cmds[] = {
+        &startCmd,
+        &stopCmd,
+        &dutyCmd,
+        &periodCmd,
+        &compareCmd,
+        &prescalerCmd,
+        &helpCmd,
+        &statusCmd};
 
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
@@ -464,34 +431,14 @@ void StartDefaultTask(void *argument)
       }
       commandPtr += 3;
 
-      // :: perform desired action
-      if(nullptr != _pTimer) {
-          if (0 == strncmp(startCmd.cmd, (char *) commandPtr, startCmd.len)) {
-              _pTimer->start();
-          } else if (0 == strncmp(stopCmd.cmd, (char *) commandPtr, stopCmd.len)) {
-              _pTimer->stop();
-          } else if (0 == strncmp(dutyCmd.cmd, (char *) commandPtr, dutyCmd.len)) {
-              uint8_t duty = GetArgument(0, commandPtr);
-              _pTimer->setDutyCycle(duty);
-          } else if (0 == strncmp(periodCmd.cmd, (char *) commandPtr, periodCmd.len)) {
-              uint16_t period = GetArgument(0, commandPtr);
-              _pTimer->setPeriod(period);
-          } else if (0 == strncmp(compareCmd.cmd, (char *) commandPtr, compareCmd.len)) {
-              uint16_t compare = GetArgument(0, commandPtr);
-              _pTimer->setCompare(compare);
-          } else if (0 == strncmp(prescalerCmd.cmd, (char *) commandPtr, prescalerCmd.len)) {
-              uint16_t prescaler = GetArgument(0, commandPtr);
-              _pTimer->setPrescaler(prescaler);
-          } else if (0 == strncmp(helpCmd.cmd, (char *) commandPtr, helpCmd.len)) {
-              CDC_Transmit_FS((uint8_t *) helpString, strlen(helpString));
-          } else if (0 == strncmp(statusCmd.cmd, (char *) commandPtr, statusCmd.len)) {
-              uint32_t len = status(statusMessage);
-              CDC_Transmit_FS((uint8_t *) statusMessage, len);
-
-              len = _pTimer->status(statusMessage);
-              CDC_Transmit_FS((uint8_t *) statusMessage, len);
+      for(auto cmd : cmds) {
+          uint8_t cmdLen = 0;
+          if(0 < (cmdLen = cmd->IsCommand((char*)commandPtr))) {
+              cmd->RunCommand(_pTimer, (char*)(cmdLen + 1), rxSize - 3 - cmdLen -1);
+              break;
           }
       }
+
       osDelay(1);
   }
   /* USER CODE END 5 */ 

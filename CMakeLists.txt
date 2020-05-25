@@ -6,16 +6,16 @@ cmake_minimum_required(VERSION 3.14)
     SET(CMAKE_SYSTEM_VERSION 1)
 
     # specify cross compilers and tools
-    SET(GCCPATH /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-arm-embedded.7-2018-q2-update.macos64_1.0.0.201904031358/tools/bin)
+    # edit gcc path using sudo nano /etc/path
     SET(CMAKE_C_COMPILER_WORKS 1)
-    SET(CMAKE_C_COMPILER ${GCCPATH}/arm-none-eabi-gcc)
+    SET(CMAKE_C_COMPILER arm-none-eabi-gcc)
     SET(CMAKE_CXX_COMPILER_WORKS 1)
-    SET(CMAKE_CXX_COMPILER ${GCCPATH}/arm-none-eabi-g++)
-    SET(CMAKE_ASM_COMPILER  ${GCCPATH}/arm-none-eabi-gcc)
-    SET(CMAKE_AR ${GCCPATH}/arm-none-eabi-ar)
-    SET(CMAKE_OBJCOPY ${GCCPATH}/arm-none-eabi-objcopy)
-    SET(CMAKE_OBJDUMP ${GCCPATH}/arm-none-eabi-objdump)
-    SET(SIZE ${GCCPATH}/arm-none-eabi-size)
+    SET(CMAKE_CXX_COMPILER arm-none-eabi-g++)
+    SET(CMAKE_ASM_COMPILER  arm-none-eabi-gcc)
+    SET(CMAKE_AR arm-none-eabi-ar)
+    SET(CMAKE_OBJCOPY arm-none-eabi-objcopy)
+    SET(CMAKE_OBJDUMP arm-none-eabi-objdump)
+    SET(SIZE arm-none-eabi-size)
 
     SET(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32F103C8Tx_FLASH.ld)
 
@@ -47,7 +47,7 @@ cmake_minimum_required(VERSION 3.14)
     SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
 
     PROJECT(PWMOut C CXX ASM)
-    set(CMAKE_CXX_STANDARD 11)
+    set(CMAKE_CXX_STANDARD 17)
 
     add_definitions(-D__weak=__attribute__\(\(weak\)\) -D__packed=__attribute__\(\(__packed__\)\) -DUSE_HAL_DRIVER -DSTM32F103xB)
 
@@ -93,7 +93,7 @@ cmake_minimum_required(VERSION 3.14)
     Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c
     Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c
     Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c
-    Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c)
+    Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/usbd_cdc.c Src/CommandBase.cpp Src/CommandBase.hpp Src/Commands.cpp Src/Commands.hpp Src/Util.cpp)
 
     include_directories(
             Inc
