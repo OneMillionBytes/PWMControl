@@ -80,9 +80,8 @@ bool PrescalerCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint
 char statusMessage[80];
 bool StatusCommand::_RunCommand(PWMTimer *a_poTimer, char *a_sArguments, uint8_t a_ui8ArgumentsLength) {
     uint32_t len = status(statusMessage);
-    CDC_Transmit_FS((uint8_t *) statusMessage, len);
 
-    len = a_poTimer->status(statusMessage);
+    len += a_poTimer->status(statusMessage + len);
     CDC_Transmit_FS((uint8_t *) statusMessage, len);
     return true;
 }

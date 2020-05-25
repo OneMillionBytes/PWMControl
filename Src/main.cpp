@@ -426,10 +426,11 @@ void StartDefaultTask(void *argument)
       PWMTimer* _pTimer = nullptr;
       if(0 == strncmp((char*)"t1:", (char*)commandPtr, 3)) {
           _pTimer = &_Timer1;
+          commandPtr += 3;
       } else if(0 == strncmp((char*)"t2:", (char*)commandPtr, 3)) {
           _pTimer = &_Timer2;
+          commandPtr += 3;
       }
-      commandPtr += 3;
 
       for(auto cmd : cmds) {
           uint8_t cmdLen = 0;
