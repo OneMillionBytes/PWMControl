@@ -42,6 +42,18 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.PWMOut.elf">
     <configuration name="PWMOut.elf" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PWMOut" TARGET_NAME="PWMOut.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PWMOut" RUN_TARGET_NAME="PWMOut.elf">
       <method v="2">
@@ -58,18 +70,6 @@
       <item itemvalue="CMake Application.PWMOut.elf" />
       <item itemvalue="OpenOCD Download &amp; Run.PWMOut.elf" />
     </list>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -190,11 +190,6 @@
           <url>file://$PROJECT_DIR$/Src/usbd_cdc_if.c</url>
           <line>10</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Src/usbd_cdc_if.c</url>
-          <line>265</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
