@@ -1,4 +1,12 @@
 # PWMControl
+**PWMControl** allows you to setup two PWM outputs by directly controlling their approprieate registers. The application is written for the STM32f103 a.k.a. BluePill but may be easily ported to other controllers of the STM32 family.  
+After you've compiled and flashed the binary, connect via serial, which is provided as VCP via USB, and command as you whish.  
+## Features
+|||
+|---|---|
+|Two timers|Control two PWM outputs independently
+|Serial over USB|Just connect via USB and go
+|Extendable|Missing some features? PWMControl is easy to extend!
 ## Commands        
 The command syntax is as follows:  
 `<timer>:<command>:<argument>`  
