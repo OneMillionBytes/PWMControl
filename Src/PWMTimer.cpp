@@ -1,7 +1,3 @@
-//
-// Created by Christian Tille on 05.05.20.
-//
-
 #include "PWMTimer.hpp"
 
 #include "stm32f1xx_hal.h"
