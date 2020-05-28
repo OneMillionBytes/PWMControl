@@ -1,7 +1,3 @@
-//
-// Created by Christian Tille on 05.05.20.
-//
-
 #ifndef PWMOUT_PWMTIMER_HPP
 #define PWMOUT_PWMTIMER_HPP
 
