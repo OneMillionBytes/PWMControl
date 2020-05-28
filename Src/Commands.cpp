@@ -5,19 +5,19 @@
 #include "usbd_cdc_if.h"
 
 const char* helpString =
-        "Syntax: <timer>:<command>:<argument>\n"
-        "<timer> [t1,t2]\n"
-        "t1........... Timer connected to A8\n"
-        "t2........... Timer connected to A9\n"
-        "<command>:<arguments>\n"
-        "help ........ Prints this output\n"
-        "start ....... starts PWM\n"
-        "stop ........ stops PWM\n"
-        "duty ........ sets duty cycle [0..100]\n"
-        "period ...... sets the period [0..65535]\n"
-        "compare ..... sets compare value [0.65535]\n"
-        "prescaler ... sets the prescaler [0..65535]\n"
-        "status ...... prints the current configuration\n";
+        "Syntax: <timer>:<command>[:<argument>]\n"
+        "\n"
+        "<timer>...... [t1,t2]\n"
+        "    t1........... Timer connected to A8\n"
+        "    t2........... Timer connected to A9\n"
+        "<command>[:<arguments>]\n"
+        "    start ....... starts PWM\n"
+        "    stop ........ stops PWM\n"
+        "    duty ........ sets duty cycle [0..100]\n"
+        "    period ...... sets the period [0..65535]\n"
+        "    compare ..... sets compare value [0.65535]\n"
+        "    prescaler ... sets the prescaler [0..65535]\n"
+        "    status ...... prints the current configuration\n";
 
 const char* statusTemplate =
         "Clock: %u\n";
