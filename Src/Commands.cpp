@@ -20,7 +20,7 @@ const char* helpString =
         "    status ...... prints the current configuration\n";
 
 const char* statusTemplate =
-        "Clock: %u\n";
+        "Clock: %uMhz\n";
 
 uint32_t status(char* const buffer) {
     return sprintf(buffer, statusTemplate, HAL_RCC_GetHCLKFreq());
