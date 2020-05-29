@@ -48,7 +48,7 @@ The output of `t1:status` may look as follows:
 ```
 t1:status
 OK
-Clock: 72000000
+Clock: 72000000MHz
 Prescaler: 0
 Period: 80
 Compare: 27
