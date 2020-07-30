@@ -435,7 +435,7 @@ void StartDefaultTask(void *argument)
       for(auto cmd : cmds) {
           uint8_t cmdLen = 0;
           if(0 < (cmdLen = cmd->IsCommand((char*)commandPtr))) {
-              cmd->RunCommand(_pTimer, (char*)(cmdLen + 1), rxSize - 3 - cmdLen -1);
+              cmd->RunCommand(_pTimer, (char*)(commandPtr), rxSize - 3);
               break;
           }
       }
